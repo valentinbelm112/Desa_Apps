@@ -6,7 +6,7 @@ const path = require('path');
 
 mongoose.Promise = global.Promise;
 const uri =
-  "mongodb+srv://db_user_platzivideos:V71858727NEM@cluster0.rdb3q.mongodb.net/Integracn_Movies?retryWrites=true&w=majority";
+  "mongodb+srv://db_user_crud:V71858727NEM@cluster0.ah9df.mongodb.net/CRUD_RETO?retryWrites=true&w=majority";
 mongoose.connect(uri, {useNewUrlParser: true, useUnifiedTopology: true});
 
 const app = express();
@@ -17,7 +17,6 @@ var corsOptions = {
 
 app.use(express.urlencoded({extended: false}));
 
-app.use(express.static(path.join(__dirname, 'view')));
 app.use(cors(corsOptions));
 
 // parse requests of content-type - application/json
@@ -27,11 +26,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // simple route
-const routes = require('./routes/routing.js');
-const routesEmail = require('./routes/routingEmail.js');
+const routesMentor = require('./routes/routingMentor.js');
+const routesMentorizado = require('./routes/routingMentorizado');
 
-routes(app);
-routesEmail(app);
+
+routesMentor(app);
+routesMentorizado(app);
 
 app.use((req, res) => {
     res.status(404).send({url: req.originalUrl + ' not found'});

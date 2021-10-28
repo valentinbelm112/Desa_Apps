@@ -2,14 +2,14 @@
 
 const mongoose = require("mongoose");
 const Mentores = require("../model/mentores");
-const Mentorizados = require("../model/mentorizados");
+
 
 exports.mentores = (req, res) => {
-  Mentores.find({}, (err, movie) => {
+  Mentores.find({}, (err, mentor) => {
     if (err) {
       res.send(err);
     }
-    res.json(movie);
+    res.json(mentor);
   });
 };
 
